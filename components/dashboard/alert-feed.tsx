@@ -45,7 +45,6 @@ function getResponseBadge(status: ResponseStatus) {
   }
 }
 
-// Extended alert data with confidence and response status
 const ALERT_EXTENSIONS: Record<number, { confidence: number; responseStatus: ResponseStatus }> = {
   1: { confidence: 94, responseStatus: "escalated" },
   2: { confidence: 89, responseStatus: "investigating" },
@@ -87,7 +86,6 @@ export function AlertFeed({ onOpenCamera }: AlertFeedProps) {
 
   return (
     <div className="flex h-full flex-col border-l border-border bg-sidebar overflow-hidden w-80">
-      {/* Header */}
       <div className="shrink-0 flex items-center justify-between border-b border-sidebar-border px-3 py-2.5">
         <div className="flex items-center gap-2">
           <Activity className="size-4 text-red-400" />
@@ -110,7 +108,6 @@ export function AlertFeed({ onOpenCamera }: AlertFeedProps) {
         </Select>
       </div>
 
-      {/* Alert Cards */}
       <ScrollArea className="flex-1">
         <div className="flex flex-col gap-2 p-2.5">
           {filteredAlerts.map((alert) => {
@@ -127,7 +124,7 @@ export function AlertFeed({ onOpenCamera }: AlertFeedProps) {
                   alert.severity === "emergency" && "animate-pulse-subtle"
                 )}
               >
-                {/* Top Row: Icon + Time + Severity Badge */}
+
                 <div className="flex items-center gap-1.5 mb-2">
                   {severityIcon(alert.severity)}
                   <span className="font-mono text-[10px] text-muted-foreground">{alert.time}</span>
@@ -143,9 +140,7 @@ export function AlertFeed({ onOpenCamera }: AlertFeedProps) {
                   </Badge>
                 </div>
 
-                {/* Content Row: Thumbnail + Text */}
                 <div className="flex gap-2.5">
-                  {/* Incident Thumbnail */}
                   {alert.cameraId && (
                     <button
                       onClick={() => onOpenCamera(alert.cameraId!, alert.incidentTime)}
@@ -162,7 +157,6 @@ export function AlertFeed({ onOpenCamera }: AlertFeedProps) {
                     </button>
                   )}
 
-                  {/* Alert text + confidence */}
                   <div className="flex flex-col gap-1 min-w-0 flex-1">
                     <p className="text-[11px] text-foreground leading-relaxed">
                       {alert.text}
@@ -180,7 +174,6 @@ export function AlertFeed({ onOpenCamera }: AlertFeedProps) {
                   </div>
                 </div>
 
-                {/* Response Status Row */}
                 <div className="flex items-center justify-between mt-2 pt-2 border-t border-border/30">
                   {alert.cameraId && (
                     <button
