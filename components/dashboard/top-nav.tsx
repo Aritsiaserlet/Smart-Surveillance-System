@@ -77,7 +77,6 @@ export function TopNav({
 
   return (
     <header className="flex h-14 shrink-0 items-center justify-between border-b border-border bg-card px-4 gap-4">
-      {/* Left: hamburger + title */}
       <div className="flex items-center gap-3">
         <Button
           variant="ghost"
@@ -99,7 +98,6 @@ export function TopNav({
         </div>
       </div>
 
-      {/* Center: global search */}
       <div className="flex-1 max-w-md mx-4 hidden sm:block">
         <div className="relative">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 size-3.5 text-muted-foreground" />
@@ -112,9 +110,7 @@ export function TopNav({
         </div>
       </div>
 
-      {/* Right: notifications, profile, minimap, grid */}
       <div className="flex items-center gap-1.5">
-        {/* Notification Bell */}
         <Popover open={notificationsOpen} onOpenChange={setNotificationsOpen}>
           <PopoverTrigger asChild>
             <Button
@@ -173,7 +169,6 @@ export function TopNav({
           </PopoverContent>
         </Popover>
 
-        {/* User Profile Dropdown */}
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button
@@ -221,7 +216,6 @@ export function TopNav({
 
         <div className="h-5 w-px bg-border mx-0.5 hidden sm:block" />
 
-        {/* Mini-map toggle */}
         <Button
           variant={miniMapOpen ? "default" : "ghost"}
           size="icon"
@@ -237,7 +231,6 @@ export function TopNav({
           <Map className="size-4" />
         </Button>
 
-        {/* Grid layout toggle */}
         <Button
           variant="ghost"
           size="icon"
