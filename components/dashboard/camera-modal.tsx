@@ -62,7 +62,6 @@ export function CameraModal({ cameraId, open, onClose, initialTimelinePosition }
   const [dateInput, setDateInput] = useState("2026-02-21")
   const [timeInput, setTimeInput] = useState("14:00")
 
-  // When opened from an alert, jump to history mode at the incident time
   useEffect(() => {
     if (open && initialTimelinePosition !== undefined) {
       setMode("history")
@@ -104,7 +103,6 @@ export function CameraModal({ cameraId, open, onClose, initialTimelinePosition }
   return (
     <Dialog open={open} onOpenChange={(v) => !v && onClose()}>
       <DialogContent className="sm:max-w-4xl bg-card border-border p-0 gap-0 overflow-hidden">
-        {/* Header */}
         <DialogHeader className="px-4 pt-4 pb-3 border-b border-border">
           <div className="flex items-center gap-3 flex-wrap">
             <DialogTitle className="text-foreground">{camera.name} - {camera.location}</DialogTitle>
@@ -131,7 +129,6 @@ export function CameraModal({ cameraId, open, onClose, initialTimelinePosition }
             Floor {camera.floor} - {camera.location}
           </DialogDescription>
 
-          {/* AI Insight Overlay Toggles */}
           <div className="flex items-center gap-1.5 pt-2 flex-wrap">
             <span className="text-[10px] text-muted-foreground mr-1">AI Overlays:</span>
             {AI_OVERLAYS.map((overlay) => {
@@ -158,17 +155,14 @@ export function CameraModal({ cameraId, open, onClose, initialTimelinePosition }
           </div>
         </DialogHeader>
 
-        {/* Video Player Area */}
         <div className="px-4 pt-3">
           <Tabs value={mode} onValueChange={setMode} className="w-full">
             <div className="relative rounded-lg border border-border bg-background overflow-hidden"
               style={{ transform: `scale(${zoom})`, transformOrigin: "center" }}
             >
               <div className="aspect-video flex items-center justify-center relative">
-                {/* Scanline overlay */}
                 <div className="absolute inset-0 bg-[repeating-linear-gradient(0deg,transparent,transparent_2px,rgba(0,0,0,0.05)_2px,rgba(0,0,0,0.05)_4px)]" />
 
-                {/* Main placeholder */}
                 <div className="flex flex-col items-center gap-3">
                   {mode === "realtime" ? (
                     <>
@@ -187,7 +181,6 @@ export function CameraModal({ cameraId, open, onClose, initialTimelinePosition }
                   )}
                 </div>
 
-                {/* AI overlay indicators when active */}
                 {activeOverlays.has("bbox") && (
                   <div className="absolute top-[25%] left-[30%] w-20 h-28 border-2 border-primary/40 rounded-sm" />
                 )}
@@ -204,7 +197,6 @@ export function CameraModal({ cameraId, open, onClose, initialTimelinePosition }
                   <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_40%_50%,rgba(239,68,68,0.15),transparent_60%)]" />
                 )}
 
-                {/* Recording indicator */}
                 <div className="absolute top-3 left-3 flex items-center gap-1.5">
                   <span className={cn("size-2 rounded-full", mode === "realtime" ? "bg-red-500 animate-blink" : "bg-amber-500")} />
                   <span className={cn("font-mono text-[11px]", mode === "realtime" ? "text-red-400" : "text-amber-400")}>
@@ -212,16 +204,13 @@ export function CameraModal({ cameraId, open, onClose, initialTimelinePosition }
                   </span>
                 </div>
 
-                {/* Timestamp */}
                 <div className="absolute bottom-3 left-3 rounded bg-background/80 px-2 py-1 font-mono text-[11px] text-muted-foreground">
                   {mode === "realtime" ? new Date().toLocaleString() : `${dateInput} ${timeLabel}`}
                 </div>
               </div>
             </div>
 
-            {/* Bottom Controls Bar */}
             <div className="mt-3 flex items-center justify-between gap-2 flex-wrap">
-              {/* Playback controls */}
               <div className="flex items-center gap-1">
                 <Button variant="ghost" size="icon" className="size-8 text-muted-foreground hover:text-foreground" onClick={() => setIsPlaying(!isPlaying)}>
                   {isPlaying ? <Pause className="size-4" /> : <Play className="size-4" />}
@@ -247,7 +236,6 @@ export function CameraModal({ cameraId, open, onClose, initialTimelinePosition }
                 )}
               </div>
 
-              {/* Mode tabs + Go to Live */}
               <div className="flex items-center gap-2">
                 {mode === "history" && (
                   <Button
@@ -274,9 +262,7 @@ export function CameraModal({ cameraId, open, onClose, initialTimelinePosition }
               </div>
             </div>
 
-            {/* History Controls */}
             <TabsContent value="history" className="mt-0 pt-2">
-              {/* Date/Time picker */}
               <div className="flex items-center gap-2 mb-2">
                 <Input
                   type="date"
@@ -294,8 +280,7 @@ export function CameraModal({ cameraId, open, onClose, initialTimelinePosition }
                   Jump
                 </Button>
               </div>
-
-              {/* Timeline scrubber */}
+              
               <div className="flex flex-col gap-2">
                 <div className="flex items-center justify-between font-mono text-[11px] text-muted-foreground">
                   <span>00:00:00</span>
@@ -309,7 +294,6 @@ export function CameraModal({ cameraId, open, onClose, initialTimelinePosition }
                     max={100}
                     step={0.1}
                   />
-                  {/* Incident markers on timeline */}
                   <div className="absolute top-0 left-[72%] w-1 h-4 -mt-0.5 bg-red-500/60 rounded-full pointer-events-none" />
                   <div className="absolute top-0 left-[55%] w-1 h-4 -mt-0.5 bg-amber-500/60 rounded-full pointer-events-none" />
                   <div className="absolute top-0 left-[38%] w-1 h-4 -mt-0.5 bg-amber-500/60 rounded-full pointer-events-none" />
@@ -320,12 +304,10 @@ export function CameraModal({ cameraId, open, onClose, initialTimelinePosition }
               </div>
             </TabsContent>
 
-            {/* Real-time has no extra controls */}
             <TabsContent value="realtime" className="mt-0" />
           </Tabs>
         </div>
 
-        {/* Bottom padding */}
         <div className="h-4" />
       </DialogContent>
     </Dialog>
