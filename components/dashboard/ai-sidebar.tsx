@@ -162,11 +162,9 @@ export function AiSidebar({ open }: AiSidebarProps) {
           </TabsList>
         </div>
 
-        {/* Analytics & Insights Tab */}
         <TabsContent value="analytics" className="flex-1 overflow-hidden m-0">
           <ScrollArea className="h-full">
             <div className="flex flex-col gap-4 p-3">
-              {/* Occupancy Over Time */}
               <div className="rounded-lg border border-border bg-card/50 p-3">
                 <div className="flex items-center gap-2 mb-3">
                   <TrendingUp className="size-3.5 text-primary" />
@@ -199,7 +197,6 @@ export function AiSidebar({ open }: AiSidebarProps) {
                 </div>
               </div>
 
-              {/* Incident Trend */}
               <div className="rounded-lg border border-border bg-card/50 p-3">
                 <div className="flex items-center gap-2 mb-3">
                   <AlertTriangle className="size-3.5 text-red-400" />
@@ -226,7 +223,6 @@ export function AiSidebar({ open }: AiSidebarProps) {
                 </div>
               </div>
 
-              {/* AI Insight Sentences */}
               <div className="flex flex-col gap-2">
                 <span className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wider">AI Insights</span>
                 <div className="rounded-md border border-border bg-card/50 p-2.5">
@@ -255,7 +251,6 @@ export function AiSidebar({ open }: AiSidebarProps) {
                 </div>
               </div>
 
-              {/* Actionable Recommendation */}
               <div className="rounded-lg border border-primary/30 bg-primary/5 p-3">
                 <div className="flex items-start gap-2">
                   <Lightbulb className="size-4 text-primary mt-0.5 shrink-0" />
@@ -270,16 +265,13 @@ export function AiSidebar({ open }: AiSidebarProps) {
             </div>
           </ScrollArea>
         </TabsContent>
-
-        {/* System Health & Settings Tab */}
+        
         <TabsContent value="system" className="flex-1 overflow-hidden m-0">
           <ScrollArea className="h-full">
             <div className="flex flex-col gap-4 p-3">
-              {/* System Health */}
               <div className="flex flex-col gap-3">
                 <span className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wider">System Health</span>
 
-                {/* Cameras Online */}
                 <div className="rounded-md border border-border bg-card/50 p-3">
                   <div className="flex items-center justify-between mb-2">
                     <div className="flex items-center gap-2">
@@ -292,7 +284,6 @@ export function AiSidebar({ open }: AiSidebarProps) {
                   <span className="text-[9px] text-muted-foreground mt-1 block">92% uptime</span>
                 </div>
 
-                {/* AI Processing Load */}
                 <div className="rounded-md border border-border bg-card/50 p-3">
                   <div className="flex items-center justify-between mb-2">
                     <div className="flex items-center gap-2">
@@ -305,7 +296,6 @@ export function AiSidebar({ open }: AiSidebarProps) {
                   <span className="text-[9px] text-muted-foreground mt-1 block">GPU: 4.2 TFLOPS / 6.0 TFLOPS</span>
                 </div>
 
-                {/* Storage Remaining */}
                 <div className="rounded-md border border-border bg-card/50 p-3">
                   <div className="flex items-center justify-between mb-2">
                     <div className="flex items-center gap-2">
@@ -318,7 +308,6 @@ export function AiSidebar({ open }: AiSidebarProps) {
                   <span className="text-[9px] text-muted-foreground mt-1 block">4.2 TB / 10.0 TB (42% used)</span>
                 </div>
 
-                {/* Network Status */}
                 <div className="rounded-md border border-border bg-card/50 p-3">
                   <div className="flex items-center justify-between mb-2">
                     <div className="flex items-center gap-2">
@@ -332,14 +321,12 @@ export function AiSidebar({ open }: AiSidebarProps) {
                 </div>
               </div>
 
-              {/* User Access Management */}
               <div className="flex flex-col gap-3">
                 <div className="flex items-center gap-2">
                   <Users className="size-3.5 text-primary" />
                   <span className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wider">User Access Management</span>
                 </div>
 
-                {/* Invite Input */}
                 <div className="rounded-lg border border-border bg-card/50 p-3">
                   <label className="text-[10px] font-medium text-muted-foreground mb-2 block">Invite a new user</label>
                   <div className="flex items-center gap-1.5">
@@ -366,7 +353,7 @@ export function AiSidebar({ open }: AiSidebarProps) {
                   </div>
                 </div>
 
-                {/* Users List */}
+
                 <div className="flex flex-col gap-2">
                   <span className="text-[10px] text-muted-foreground">{users.length} user{users.length !== 1 ? "s" : ""} with access</span>
 
@@ -375,7 +362,7 @@ export function AiSidebar({ open }: AiSidebarProps) {
                       key={user.id}
                       className="rounded-lg border border-border bg-card/50 p-3 transition-colors hover:border-primary/20"
                     >
-                      {/* User Identity Row */}
+
                       <div className="flex items-center gap-2.5 mb-3">
                         <Avatar className="size-7 shrink-0">
                           <AvatarFallback
@@ -409,7 +396,6 @@ export function AiSidebar({ open }: AiSidebarProps) {
                         </TooltipProvider>
                       </div>
 
-                      {/* Permission Toggles */}
                       <div className="grid grid-cols-2 gap-x-2 gap-y-1.5">
                         {PERMISSION_KEYS.map((perm) => {
                           const PermIcon = perm.icon
