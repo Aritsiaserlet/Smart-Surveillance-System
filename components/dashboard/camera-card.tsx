@@ -34,12 +34,10 @@ export function CameraCard({ camera, onClick, compact = false }: CameraCardProps
       )}
       aria-label={`View ${camera.name} - ${camera.location}`}
     >
-      {/* Drag handle (visible on hover) */}
       <div className="absolute top-1 left-1 z-10 opacity-0 group-hover:opacity-70 transition-opacity cursor-grab">
         <GripVertical className={cn("text-muted-foreground", compact ? "size-3" : "size-4")} />
       </div>
 
-      {/* Status badge - top right */}
       <div className={cn(
         "absolute top-1.5 right-1.5 z-10 flex items-center gap-1 rounded-sm px-1.5 py-0.5",
         getStatusBgColor(camera.status),
@@ -57,12 +55,10 @@ export function CameraCard({ camera, onClick, compact = false }: CameraCardProps
         </span>
       </div>
 
-      {/* Video area */}
       <div className={cn(
         "relative flex flex-1 items-center justify-center",
         compact ? "min-h-[50px]" : "min-h-[80px]"
       )}>
-        {/* Scanline effect */}
         <div className="pointer-events-none absolute inset-0 bg-[repeating-linear-gradient(0deg,transparent,transparent_2px,rgba(0,0,0,0.04)_2px,rgba(0,0,0,0.04)_4px)] opacity-0 transition-opacity group-hover:opacity-100" />
 
         {isOffline ? (
@@ -82,22 +78,18 @@ export function CameraCard({ camera, onClick, compact = false }: CameraCardProps
           )} />
         )}
 
-        {/* AI Processing overlay */}
         {isProcessing && (
           <div className="pointer-events-none absolute inset-0 rounded-t-lg bg-[radial-gradient(ellipse_at_center,rgba(99,102,241,0.08),transparent_70%)]" />
         )}
 
-        {/* Alert pulsating glow */}
         {isAlert && (
           <div className="pointer-events-none absolute inset-0 rounded-t-lg bg-[radial-gradient(ellipse_at_center,rgba(239,68,68,0.06),transparent_70%)]" />
         )}
 
-        {/* Hover glow */}
         {!isOffline && !isProcessing && (
           <div className="pointer-events-none absolute inset-0 rounded-t-lg opacity-0 transition-opacity group-hover:opacity-100 shadow-[inset_0_0_30px_rgba(0,200,150,0.04)]" />
         )}
 
-        {/* Person count overlay for non-offline cameras */}
         {!isOffline && !compact && (
           <div className="absolute bottom-1 right-1 opacity-0 group-hover:opacity-100 transition-opacity">
             <div className="rounded bg-card/80 border border-border/50 px-1.5 py-0.5 flex items-center gap-1">
@@ -110,7 +102,6 @@ export function CameraCard({ camera, onClick, compact = false }: CameraCardProps
         )}
       </div>
 
-      {/* Camera label bar */}
       <div className={cn(
         "flex items-center gap-1.5 border-t border-border bg-card/60 text-left",
         compact ? "px-1.5 py-1.5 min-h-[28px]" : "px-2.5 py-2 min-h-[40px]"
