@@ -16,7 +16,7 @@ export interface AlertMessage {
   text: string
   cameraId?: number
   time: string
-  incidentTime?: number // timeline position 0-100 for history scrubbing
+  incidentTime?: number
 }
 
 export const CAMERAS: CameraInfo[] = [
