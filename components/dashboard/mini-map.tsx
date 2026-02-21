@@ -56,7 +56,6 @@ const FLOOR_DOTS: Record<string, MapDot[]> = {
   ],
 }
 
-// Room outlines for the floor plan
 const FLOOR_ROOMS: Record<string, { x: number; y: number; w: number; h: number; label: string }[]> = {
   "1": [
     { x: 5, y: 10, w: 25, h: 30, label: "Entrance" },
@@ -101,11 +100,9 @@ export function MiniMap({ open, onClose, onSelectCamera }: MiniMapProps) {
 
   return (
     <div className="absolute top-2 right-2 z-30 w-80 rounded-lg border border-border bg-card shadow-2xl shadow-black/40">
-      {/* Header */}
       <div className="flex items-center justify-between border-b border-border px-3 py-2">
         <span className="text-sm font-semibold text-foreground">Facility Map</span>
         <div className="flex items-center gap-2">
-          {/* 2D / 3D toggle */}
           <div className="flex items-center gap-1.5">
             <span className={cn("text-[10px] font-mono", !is3D ? "text-primary" : "text-muted-foreground")}>2D</span>
             <Switch
@@ -116,7 +113,6 @@ export function MiniMap({ open, onClose, onSelectCamera }: MiniMapProps) {
             <span className={cn("text-[10px] font-mono", is3D ? "text-primary" : "text-muted-foreground")}>3D</span>
           </div>
 
-          {/* Floor selector */}
           <Select value={floor} onValueChange={setFloor}>
             <SelectTrigger className="h-6 w-20 text-[10px] bg-secondary border-border">
               <SelectValue />
@@ -139,18 +135,15 @@ export function MiniMap({ open, onClose, onSelectCamera }: MiniMapProps) {
         </div>
       </div>
 
-      {/* Map canvas */}
       <div className={cn(
         "relative mx-3 my-3 h-52 rounded-md border border-border/50 overflow-hidden",
         is3D ? "bg-[linear-gradient(160deg,oklch(0.12_0.01_260),oklch(0.18_0.005_260))]" : "bg-background"
       )}>
-        {/* North arrow */}
         <div className="absolute top-2 right-2 z-10 flex flex-col items-center gap-0.5">
           <Compass className="size-4 text-muted-foreground/50" />
           <span className="text-[7px] font-mono text-muted-foreground/50">N</span>
         </div>
 
-        {/* Grid lines */}
         <svg className="absolute inset-0 w-full h-full opacity-[0.06]" aria-hidden="true">
           {Array.from({ length: 10 }, (_, i) => (
             <line key={`h${i}`} x1="0" y1={`${(i + 1) * 10}%`} x2="100%" y2={`${(i + 1) * 10}%`} stroke="currentColor" className="text-foreground" />
@@ -160,7 +153,6 @@ export function MiniMap({ open, onClose, onSelectCamera }: MiniMapProps) {
           ))}
         </svg>
 
-        {/* Room outlines */}
         <svg className="absolute inset-0 w-full h-full" aria-hidden="true">
           {rooms.map((room, i) => (
             <g key={i}>
@@ -189,13 +181,11 @@ export function MiniMap({ open, onClose, onSelectCamera }: MiniMapProps) {
             </g>
           ))}
 
-          {/* Entrance marker */}
           <text x="17%" y="7%" textAnchor="middle" fill="oklch(0.6 0 0)" fontSize="7" fontFamily="monospace">
             {"ENTRANCE"}
           </text>
         </svg>
 
-        {/* Movement path lines (multi-camera tracking) */}
         <svg className="absolute inset-0 w-full h-full" aria-hidden="true">
           <polyline
             points="15%,25% 30%,35% 45%,20% 55%,40% 70%,55%"
@@ -205,11 +195,9 @@ export function MiniMap({ open, onClose, onSelectCamera }: MiniMapProps) {
             strokeDasharray="4 3"
             opacity="0.4"
           />
-          {/* Path direction arrows */}
           <polygon points="69%,53% 72%,56% 68%,56%" fill="oklch(0.65 0.15 220)" opacity="0.5" />
         </svg>
 
-        {/* Dots */}
         {dots.map((dot) => (
           <div
             key={dot.id}
@@ -227,11 +215,9 @@ export function MiniMap({ open, onClose, onSelectCamera }: MiniMapProps) {
               getDotColor(dot.type)
             )} />
 
-            {/* Tooltip with Live Preview */}
             {hoveredDot === dot.id && (
               <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 z-20 pointer-events-none">
                 <div className="rounded-md bg-popover border border-border shadow-xl overflow-hidden">
-                  {/* Live Video Preview Thumbnail */}
                   {dot.cameraId && (
                     <div className="w-36 h-20 bg-background relative flex items-center justify-center">
                       <Camera className="size-5 text-muted-foreground/30" />
@@ -264,13 +250,11 @@ export function MiniMap({ open, onClose, onSelectCamera }: MiniMapProps) {
           </div>
         ))}
 
-        {/* 3D perspective effect */}
         {is3D && (
           <div className="absolute inset-0 bg-[linear-gradient(to_bottom,transparent_0%,oklch(0.1_0.005_260_/_0.3)_100%)] pointer-events-none" />
         )}
       </div>
 
-      {/* Legend */}
       <div className="flex items-center justify-between border-t border-border px-3 py-2">
         <div className="flex items-center gap-3">
           <div className="flex items-center gap-1">
