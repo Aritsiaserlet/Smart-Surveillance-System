@@ -43,10 +43,8 @@ export default function DashboardPage() {
       />
 
       <div className="relative flex flex-1 overflow-hidden">
-        {/* Left Sidebar: Analytics & System Health */}
         <AiSidebar open={sidebarOpen} />
 
-        {/* Main Camera Grid */}
         <main className="relative flex-1 overflow-auto">
           <CameraGrid
             gridMode={gridMode}
@@ -60,7 +58,6 @@ export default function DashboardPage() {
           />
         </main>
 
-        {/* Right Panel: AI Alert Feed */}
         <AlertFeed onOpenCamera={handleOpenCamera} />
       </div>
 
